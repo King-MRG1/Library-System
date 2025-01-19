@@ -1,0 +1,6 @@
+@Libarary_System_HostAddress = http://localhost:5171
+
+GET {{Libarary_System_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

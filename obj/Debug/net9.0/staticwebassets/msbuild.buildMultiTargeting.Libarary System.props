@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Libarary System.props" />
+</Project>

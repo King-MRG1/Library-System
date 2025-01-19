@@ -1,0 +1,4 @@
+*.log
+*.json
+Migrations/
+.vs/Libarary System/FileContentIndex/
