@@ -1,12 +1,10 @@
-﻿using Libarary_System.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Libarary_System.Mapping;
-using Microsoft.EntityFrameworkCore;
 using Libarary_System.Interfaces;
 using Libarary_System.Dtos.BookDto;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
+using Libarary_System.Extensions;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace Libarary_System.Controllers
 {
@@ -15,16 +13,38 @@ namespace Libarary_System.Controllers
     public class BookController : ControllerBase
     {
         private readonly IBookRepository _bookRepository;
-        public BookController(IBookRepository bookRepository)
+        private readonly IDistributedCache _cache;
+        public BookController(IBookRepository bookRepository,IDistributedCache cache)
         {
             _bookRepository = bookRepository;
+            _cache = cache;
         }
-
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async  Task<IActionResult> GetAll([FromQuery] QueriesBook queriesBook)
         {
-            var books = await _bookRepository.GetAll(queriesBook);
+           
+           string LoadLocation = "";
+
+            string recordkey = $"Books_{queriesBook.publisherName}_{queriesBook.AtuhorName}_{queriesBook.SortBy}_{queriesBook.Isdescending}";
+
+            var books = await _cache.GetRecordAsync<List<BookViewDtos>>(recordkey);
+
+            if(books is null)
+            {
+                books = await _bookRepository.GetAll(queriesBook);
+
+                LoadLocation = "Database";
+
+                await _cache.SetRecordAsync(recordkey, books, TimeSpan.FromSeconds(60));
+            }
+            else
+            {
+                LoadLocation = "Cache";
+            }
+
+            Response.Headers.Append("Load-Location", LoadLocation);
+
             return Ok(books);
         }
 
@@ -40,7 +60,7 @@ namespace Libarary_System.Controllers
             return Ok(book);
         }
 
-        [Authorize(Roles = "Admin,Staff")] 
+        [Authorize(Roles = "Admin,Staff")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] BookCreatDto book)
         {

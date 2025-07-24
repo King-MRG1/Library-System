@@ -37,7 +37,7 @@ namespace Libarary_System.Controllers
             return Ok(publisher);
         }
 
-        [Authorize(Roles = "Admin,Staff")]
+        //[Authorize(Roles = "Admin,Staff")]
         [HttpPost]
         public async Task<IActionResult> AddPublisher(PublisherCreateDto publisherCreate)
         {

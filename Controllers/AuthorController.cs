@@ -37,7 +37,7 @@ namespace Libarary_System.Controllers
             return Ok(author);
         }
 
-        [Authorize(Roles = "Admin,Staff")]
+        //[Authorize(Roles = "Admin,Staff")]
         [HttpPost]
         public async Task<IActionResult> CreateAuthor([FromBody] AuthorCreateDto authorcreate)
         {

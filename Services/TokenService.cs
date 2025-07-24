@@ -1,7 +1,6 @@
 ﻿using Libarary_System.Interfaces;
 using Libarary_System.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Identity.Client;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Cors;
 using Libarary_System.Repository;
 
 namespace Libarary_System
@@ -32,6 +30,14 @@ namespace Libarary_System
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Local"));
             });
+
+            builder.Services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = builder.Configuration.GetConnectionString("Redis");
+                options.InstanceName = "";
+            });
+
+            builder.Services.AddMemoryCache();
 
             builder.Services.AddScoped<IBookRepository, BookRepository>();
 
@@ -79,42 +85,10 @@ namespace Libarary_System
 
             builder.Services.AddScoped<ITokenService, TokenService>();
 
-            builder.Services.AddSwaggerGen(option =>
-            {
-                option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    In = ParameterLocation.Header,
-                    Description = "Please enter a valid token",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.Http,
-                    BearerFormat = "JWT",
-                    Scheme = "Bearer"
-                });
-                option.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        new string[]{}
-                    }
-                });
-            });
-
-            builder.Services.AddCors();
+            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
-            app.UseCors(builder => builder
-                 .SetIsOriginAllowed(origin => true)
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials());
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

@@ -4,9 +4,9 @@ using Libarary_System.Models;
 using Libarary_System.Querires;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.ComponentModel.DataAnnotations;
 
 namespace Libarary_System.Controllers
@@ -18,17 +18,38 @@ namespace Libarary_System.Controllers
     {
         private readonly IStaffRepository _staffRepositry;
         private readonly UserManager<AppUser> _userManager;
-        public StaffController(IStaffRepository staffRepository,UserManager<AppUser> userManager)
+        private readonly IMemoryCache _cache;
+        public StaffController(IStaffRepository staffRepository,UserManager<AppUser> userManager,IMemoryCache cache)
         {
             _staffRepositry = staffRepository;
             _userManager = userManager;
+            _cache = cache;
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetStaffs([FromQuery] QueriesStaff staffQueries)
         {
-            var staffs = await _staffRepositry.GetStaffs(staffQueries);
+            string cahceKey = $"staffs_{staffQueries.Firstname}_{staffQueries.Lastname}_{staffQueries.Address}_{staffQueries.SortBy}_{staffQueries.IsDescending} ";
+
+            var staffs = _cache.Get<List<StaffViewDto>>(cahceKey);
+
+            string loadLocation = "";
+
+            if (staffs is null)
+            {
+                staffs = await _staffRepositry.GetStaffs(staffQueries);
+
+                 _cache.Set(cahceKey, staffs,TimeSpan.FromMinutes(1));
+
+                loadLocation = "Database";
+                await Task.Delay(2000);
+            }
+
+            else loadLocation = "Cache";
+
+            Response.Headers.Append("Load-Location", loadLocation);
+
             return Ok(staffs);
         }
 

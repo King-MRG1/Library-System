@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "D:\\coding\\Libarary System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\coding\\Libarary System\\Migrations\\20250119163028_final.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20250119163028_final.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{35EFDCFE-BD29-4CFF-9A63-CA134AA49832}|Libarary System.csproj|d:\\coding\\libarary system\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35EFDCFE-BD29-4CFF-9A63-CA134AA49832}|Libarary System.csproj|solutionrelative:controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35EFDCFE-BD29-4CFF-9A63-CA134AA49832}|Libarary System.csproj|d:\\coding\\libarary system\\extensions\\distributedcacheextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35EFDCFE-BD29-4CFF-9A63-CA134AA49832}|Libarary System.csproj|solutionrelative:extensions\\distributedcacheextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{35EFDCFE-BD29-4CFF-9A63-CA134AA49832}|Libarary System.csproj|d:\\coding\\libarary system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{35EFDCFE-BD29-4CFF-9A63-CA134AA49832}|Libarary System.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,15 +38,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20250119163028_final.cs",
-              "DocumentMoniker": "D:\\coding\\Libarary System\\Migrations\\20250119163028_final.cs",
-              "RelativeDocumentMoniker": "Migrations\\20250119163028_final.cs",
-              "ToolTip": "D:\\coding\\Libarary System\\Migrations\\20250119163028_final.cs",
-              "RelativeToolTip": "Migrations\\20250119163028_final.cs",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "DistributedCacheExtensions.cs",
+              "DocumentMoniker": "D:\\coding\\Libarary System\\Extensions\\DistributedCacheExtensions.cs",
+              "RelativeDocumentMoniker": "Extensions\\DistributedCacheExtensions.cs",
+              "ToolTip": "D:\\coding\\Libarary System\\Extensions\\DistributedCacheExtensions.cs",
+              "RelativeToolTip": "Extensions\\DistributedCacheExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-19T16:30:29.03Z",
+              "WhenOpened": "2025-02-14T16:00:45.742Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookController.cs",
+              "DocumentMoniker": "D:\\coding\\Libarary System\\Controllers\\BookController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BookController.cs",
+              "ToolTip": "D:\\coding\\Libarary System\\Controllers\\BookController.cs",
+              "RelativeToolTip": "Controllers\\BookController.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T15:57:11.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\coding\\Libarary System\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\coding\\Libarary System\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAgwCkAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T15:53:53.411Z",
               "EditorCaption": ""
             }
           ]

@@ -30,7 +30,7 @@ namespace Libarary_System.Controllers
             _memberRepository = memberRepository;
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPost("RegisterStaff")]
         public async Task<IActionResult> RegisterStaff([FromBody] RegisterStaffDto registerDto)
         {
@@ -51,6 +51,7 @@ namespace Libarary_System.Controllers
                     Address = registerDto.Address,
                     PhoneNumber = registerDto.PhoneNumber
                 };
+
                 var result = await _userManger.CreateAsync(appuser, registerDto.Password);
 
                 if (result.Succeeded)
@@ -84,6 +85,7 @@ namespace Libarary_System.Controllers
                     else
                         return StatusCode(500, user.Errors);
                 }
+
                 else
                     return StatusCode(500, result.Errors);
             }
