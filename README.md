@@ -20,7 +20,7 @@ This project enables:
 - ✅ Entity Framework Core
 - ✅ Microsoft SQL Server
 - ✅ JWT (JSON Web Token) Authentication
-- ✅ C# (.NET 6+)
+- ✅ C# (.NET 8+)
 - ✅ RESTful API design
 
 ---
